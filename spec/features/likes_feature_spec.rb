@@ -30,12 +30,25 @@ feature 'liking posts', js: true do
     expect(page).to have_content "1 Like"
   end
 
-  scenario 'user can only like post once' do
+  scenario 'user can only like post once', js: true do
     # find("img[alt='Kfc']").click
     visit "/posts/1"
     expect(page).to have_content "0 Likes"
     click_link "Like"
     click_link "Like"
     expect(page).to have_content "1 Like"
+  end
+
+  scenario 'pluralisation works correctly', js: true do
+    visit "/posts/1"
+    expect(page).to have_content "0 Likes"
+    click_link "Like"
+    expect(page).to have_content "1 Like"
+    click_on 'Sign out'
+    user_2 = build(:user_2)
+    sign_up user_2
+    visit "/posts/1"
+    click_link "Like"
+    expect(page).to have_content "2 Likes"
   end
 end

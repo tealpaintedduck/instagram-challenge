@@ -9,7 +9,7 @@
         %section.post-info
           %p.likes.text-left.post-text
             %span.likes_count= post.likes.count
-            = "Like".pluralize post.likes.count
+            %span.likes_word= "Like".pluralize post.likes.count
             = link_to "Like", post_likes_path(post), class: 'likes-link'
           %h6.post-text= post.title
           - if post.comments.any?

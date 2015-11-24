@@ -2,7 +2,7 @@
 = image_tag @post.image.url(:original), class: 'img-responsive center-block'
 %section.text-center
   %span.likes_count= @post.likes.count
-  = "Like".pluralize @post.likes.count
+  %span.likes_word= "Like".pluralize @post.likes.count
   = link_to "Like", post_likes_path(@post), class: 'likes-link'
   = link_to "Leave comment", new_post_comment_path(@post)
   - if @post.comments.any?
